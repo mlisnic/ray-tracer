@@ -189,6 +189,9 @@ color color_expr(double r, double g, double b);
 /* (r,g,b) * (R,G,B) = (rR,gG,bB) */
 color color_modulate(color c1, color c2);
 
+/* edge_case : return 0 if <0, return 1 if >1, else return itself */
+double edge_case(double x);
+
 /* color_scale : scale each component by given scalar, but */
 /* don't allow any component in the result to fall outside [0,1] */
 color color_scale(double s, color c);
