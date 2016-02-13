@@ -29,22 +29,28 @@ char *ol_tos(obj_list *os)
   int i;
   for (i=0; i<1024; i++)
     buf[i] = '\0';
-  strcpy(buf,"obj_list:\n");
+  strcpy(buf,"'(");
   while (os) {
     strcat(buf, object_tos(os->obj));
     strcat(buf,"\n");
     os = os->next;
   }
+  strcat(buf,")");
   return strdup(buf);
 }
 
 /* ol_show : print objectlist representation to f */
 void ol_show(FILE *f, obj_list *os)
 {
+  char *s;
+  fprintf(f,"'(");
   while (os) {
-    fprintf(f, ":%s\n", object_tos(os->obj));
+    s = object_tos(os->obj);
+    fprintf(f, ":%s\n", s);
     os = os->next;
   }
+  fprintf(f,")");
+  free(s);
 }
 
 /* ol_free : free an objectlist */

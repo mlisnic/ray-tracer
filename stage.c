@@ -10,13 +10,22 @@ char *stage_tos(stage stg)
   int i;
   for (i=0; i<512; i++)
     buf[i] = '\0';
-  sprintf(buf,"%s%s",camera_tos(stg.c),scene_tos(stg.s));
+  char *sc = camera_tos(stg.c);
+  char *ss = scene_tos(stg.s);
+  sprintf(buf,"%s%s", sc, ss);
+  free(sc);
+  free(ss);
   return strdup(buf);
 }
 
 void stage_show(FILE *f, stage stg)
 {
-  fprintf(f,"%s%s",camera_tos(stg.c),scene_tos(stg.s));
+  char *sc = camera_tos(stg.c);
+  char *ss = scene_tos(stg.s);
+ 
+  fprintf(f,"%s%s", sc, ss);
+  free(sc);
+  free(ss);
 }
 
 /* get_stage : returns a valid stage */

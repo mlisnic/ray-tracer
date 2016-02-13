@@ -10,11 +10,20 @@ char *scene_tos(scene sc)
   int i;
   for (i=0; i<512; i++)
     buf[i] = '\0';
-  sprintf(buf,"scene: bg=%s, obj=\n%s",color_tos(sc.bg),ol_tos(sc.objects));
+  char *sm = color_tos(sc.bg);
+  char *so = ol_tos(sc.objects);
+  sprintf(buf,"scene: bg=%s, obj=\n%s", sm, so);
+  free(sm);
+  free(so);
   return strdup(buf);
 }
 
 void scene_show(FILE *f, scene sc)
 {
-  fprintf(f,"scene: bg=%s, obj=\n%s",color_tos(sc.bg),ol_tos(sc.objects));
+  char *sm = color_tos(sc.bg);
+  char *so = ol_tos(sc.objects);
+  
+  fprintf(f,"scene: bg=%s, obj=\n%s", sm, so);
+  free(sm);
+  free(so);
 }
