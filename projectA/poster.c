@@ -22,13 +22,17 @@ char *poster_tos(poster s)
   int i;
   for (i=0; i<256; i++)
     buf[i] = '\0';
-  sprintf(buf, "pst @ %s, w=%.2lf, h=%.2lf", xyz_tos(s.upper_left), s.w, s.h);
+  char *str = xyz_tos(s.upper_left);
+  sprintf(buf, "pst @ %s, w=%.2lf, h=%.2lf", str, s.w, s.h);
+  free(str);
   return strdup(buf);
 }
 
 /* poster_show : print poster to f */
 void poster_show(FILE *f, poster s)
 {
-  fprintf(f, "pst @ %s, w=%.2lf, h=%.2lf", xyz_tos(s.upper_left), s.w, s.h);
+  char *str = xyz_tos(s.upper_left);
+  fprintf(f, "pst @ %s, w=%.2lf, h=%.2lf", str, s.w, s.h);
+  free(str);
 }
 

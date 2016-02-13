@@ -294,6 +294,37 @@ char *stage_tos(stage stg);
 
 void stage_show(FILE *f, stage stg);
 
+/* ======================================= */
+/* === texture operations => texture.c === */
+/* ======================================= */
+
+double dist(xyz v, xyz w);
+
+color tex_green(object *o, location loc);
+
+/* poster_red_distance - calculate distance from upper-left-corner, use to 
+    * scale from black at upper-left to red at lower-right
+     */
+color poster_red_distance(object *o, location loc); 
+
+/* poster_rgb_distance - calculate distance from upper-left-corner, use to 
+    * scale from all red at upper-left to all blue at lower-left, with 
+     * green in the middle, and gradations between them.
+      */
+color poster_rgb_distance(object *o, location loc); 
+
+/* sphere_loc_to_rgb - scale the location so that it maps x, y, z onto r, g, b in 
+    * a way that shows gradations in the sphere. You are being given flexibility to 
+     * do this in a way that looks interesting to you.
+      */
+color sphere_loc_to_rgb(object *o, location loc); 
+
+/* sphere_stripes - color the sphere with 4 blue stripes on a white background.
+    * the pattern is: WBWBWBWBW. The stripes and background are roughly equal height.
+     */
+color sphere_horiz_stripes(object *o, location loc); 
+
+
 /* The function get_stage just needs to return a valid stage. */
 /* The argument may be used, or not, at your discretion. */
 stage get_stage(unsigned int selection);

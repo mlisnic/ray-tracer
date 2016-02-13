@@ -19,12 +19,21 @@ char *ray_tos(ray r)
   int i;
   for (i=0; i<128; i++)
     buf[i] = '\0';
-  sprintf(buf, "%s -> %s", xyz_tos(r.origin), xyz_tos(r.dir));
+  char *so = xyz_tos(r.origin);
+  char *sd = xyz_tos(r.dir);
+  sprintf(buf, "ray:%s->%s", so, sd);
+  free(so);
+  free(sd);
   return strdup(buf);
 }
 
 /* ray_show : print ray representation to file */
 void ray_show(FILE *f, ray r)
-{
-  fprintf(f, "%s -> %s", xyz_tos(r.origin), xyz_tos(r.dir));
+{ 
+  char *so = xyz_tos(r.origin);
+  char *sd = xyz_tos(r.dir);
+  
+  fprintf(f, "ray:%s->%s", so, sd);
+  free(so);
+  free(sd);
 }

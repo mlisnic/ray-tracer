@@ -12,6 +12,7 @@ char *hit_test_tos(hit_test t)
     buf[i] = '\0';
   char *s = xyz_tos(t.hit_point);
   sprintf(buf,"hit_test: hit=%d, t=%.2lf @%s\n",t.miss,t.t,s);
+  free(s);
   return strdup(buf);
 }
 
@@ -19,6 +20,7 @@ void hit_test_show(FILE *f, hit_test t)
 {
   char *s = xyz_tos(t.hit_point);
   fprintf(f,"hit_test: hit=%d, t=%.2lf @%s\n",t.miss,t.t,s);
+  free(s);
 }
 
 

@@ -16,6 +16,8 @@ char *camera_tos(camera cm)
 
 void camera_show(FILE *f, camera cm)
 {
-  fprintf(f,"cam: h=%d, w=%d @ %s\n",cm.h,cm.w,xyz_tos(cm.loc));
+  char *s = xyz_tos(cm.loc);
+  fprintf(f,"cam: h=%d, w=%d @ %s\n",cm.h,cm.w,s);
+  free(s);
 }
 
